@@ -3,9 +3,7 @@ from rest_framework.response import Response
 from rest_framework import status
 from .models import Director, Movie, Review
 from .serializers import DirectorSerializer, MovieSerializer, ReviewSerializer
-
-
-
+from rest_framework import generics
 
 @api_view(['GET'])
 def DirectorDetailView(request, id):
@@ -62,3 +60,10 @@ def test_api_view(request):
         'dict': {'key': 'value'}
     }
     return Response(data=[dict_])
+
+@api_view(['GET'])
+def MovieReviewListView(request):
+    movies = Movie.objects.all()
+    data = MovieSerializer(instance=movies, many=True).data
+    return Response(data=data, status=status.HTTP_200_OK)
+
