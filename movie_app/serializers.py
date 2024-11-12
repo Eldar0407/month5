@@ -29,3 +29,7 @@ class MovieSerializer(serializers.ModelSerializer):
         model = Movie
         fields = 'title description duration director reviews rating'.split()
 
+class MovieDetailSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Movie
+        fields = '__all__'
