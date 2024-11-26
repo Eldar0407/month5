@@ -1,6 +1,6 @@
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-from rest_framework import status, serializers
+from rest_framework import status
 from .models import Director, Movie, Review
 from .serializers import (DirectorSerializer, MovieSerializer, ReviewSerializer, MovieDetailSerializer,
                           MovieValidateSerializer, ReviewValidateSerializer, DirectorValidateSerializer)
@@ -72,6 +72,7 @@ def MovieDetailView(request, id):
         return Response(status=status.HTTP_204_NO_CONTENT)
 @api_view(['GET', 'POST'])
 def MovieCreateView(request):
+    print(request.user)
     if request.method == 'GET':
         movies = Movie.objects.all()
         data = MovieSerializer(instance=movies, many=True).data
