@@ -4,7 +4,7 @@ from .models import ConfirmCode
 
 class UserAuthSerializer(serializers.Serializer):
     username = serializers.CharField(max_length=150)
-    password = serializers.CharField()
+    password = serializers.IntegerField()
 
 
 class UserCreateSerializer(serializers.ModelSerializer):
